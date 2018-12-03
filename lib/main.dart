@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/foundation.dart';
-import 'package:luharitrip/luxury_api.dart';
-import 'package:luharitrip/travel_list_screen.dart';
+import 'package:luharitrip/resources/luxury_api.dart';
+import 'package:luharitrip/ui/travel_list.dart';
 
 final ThemeData kIOSTheme = new ThemeData(
     accentColor: Color(0xFFF66555),
@@ -35,7 +35,7 @@ class _RxDartLuhariTripApp extends State<LuhariTripApp>{
       theme: defaultTargetPlatform == TargetPlatform.iOS
           ? kIOSTheme
           : kDefaultTheme,
-      home: TravelListScreen(api: widget.api),
+      home: TravelList(api: widget.api),
     );
   }
 
