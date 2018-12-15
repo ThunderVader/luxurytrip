@@ -11,12 +11,26 @@ dependencies:
   cupertino_icons: ^0.1.2
   sqflite: any
   path_provider: ^0.4.1
+  flutter_launcher_icons: ^0.7.0
 
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon/icon.png"
+  adaptive_icon_background: "#F66555"
+  adaptive_icon_foreground: "assets/icon/icon-foreground.png"
+  #flutter_icons:
+  #  image_path: "icon/icon.png"
+  #  android: true
+  #  ios: true
+  #  adaptive_icon_background: "#F66555"
+  #  adaptive_icon_foreground: "icon/icon-foreground.png"
 
 
 flutter:
@@ -29,3 +43,5 @@ flutter:
    - family: GTWalsheimPro
      fonts:
       - asset: assets/GTWalsheimPro-Bold.otf
+
+

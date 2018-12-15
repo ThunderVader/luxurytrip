@@ -18,6 +18,26 @@ class ItemModel {
   bool get isEmpty => items.isEmpty;
 }
 
+class ItemModelDB {
+  final List<TravelItem> items;
+
+  ItemModelDB(this.items);
+
+  factory ItemModelDB.fromDB(dynamic json) {
+    final items = (json as List)
+        .cast<Map<String, Object>>()
+        .map((Map<String, Object> item) {
+      return TravelItem.fromDb(item);
+    }).toList();
+
+    return ItemModelDB(items);
+  }
+
+  bool get isPopulated => items.isNotEmpty;
+
+  bool get isEmpty => items.isEmpty;
+}
+
 class TravelItem {
   final int id;
   final String title;
@@ -58,7 +78,7 @@ class TravelItem {
         provider: map['provider'],
         destination: _hasDestination ? {'id': map['destination_id']} : null,
         date: DateTime.parse(map['date']).toLocal(),
-        isFavorite: false);
+        isFavorite: true);
   }
 
   Map toMap() {

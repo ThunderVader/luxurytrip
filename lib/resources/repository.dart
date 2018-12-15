@@ -8,5 +8,5 @@ class Repository {
 
   Future<ItemModel> fetchAllTravels() => moviesApiProvider.fetchTravelList();
 
-//  Future<TrailerModel> fetchTrailers(int movieId) => moviesApiProvider.fetchTrailer(movieId);
+//  Future<ItemModelDB> fetchTrailers(int movieId) => moviesApiProvider.fetchTrailer(movieId);
 }

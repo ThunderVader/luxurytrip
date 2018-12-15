@@ -25,7 +25,7 @@ class TravelDatabase {
 
   Future<Database> initDB() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentsDirectory.path, "main.db");
+    String path = join(documentsDirectory.path, "luharitrip.db");
     var theDb = await openDatabase(path, version: 1, onCreate: _onCreate);
     return theDb;
   }
@@ -36,46 +36,35 @@ class TravelDatabase {
               link TEXT NOT NULL,
               date TEXT NOT NULL,
               provider TEXT NOT NULL,
-              destination_id INTEGER
+              destination_id INTEGER,
+              background_id integer
               )""");
 
     print("Database was Created!");
   }
 
-  Future<List<TravelItem>> getTravels() async {
+  Future<ItemModelDB> getTravels() async {
     var dbClient = await db;
-    List<Map> res = await dbClient.query("Movies");
-    return res.map((m) => TravelItem.fromDb(m)).toList();
+    List<Map> res = await dbClient.query("Travels");
+    return ItemModelDB.fromDB(res);
   }
 
-  Future<TravelItem> getMovie(String id) async {
+  Future<TravelItem> getTravel(String id) async {
     var dbClient = await db;
     var res = await dbClient.query("Travels", where: "id = ?", whereArgs: [id]);
     if (res.length == 0) return null;
     return TravelItem.fromDb(res[0]);
   }
 
-  Future<int> addMovie(TravelItem movie) async {
+  Future<int> addTravel(TravelItem travel) async {
     var dbClient = await db;
-    try {
-      int res = await dbClient.insert("Travels", movie.toMap());
-      print("Travel added $res");
-      return res;
-    } catch (e) {
-      int res = await updateMovie(movie);
-      return res;
-    }
-  }
-
-  Future<int> updateMovie(TravelItem movie) async {
-    var dbClient = await db;
-    int res = await dbClient.update("Travels", movie.toMap(),
-        where: "id = ?", whereArgs: [movie.id]);
-    print("Travel updated $res");
+    int res = await dbClient.insert("Travels", travel.toMap());
+    print("Travel added $res");
     return res;
   }
 
-  Future<int> deleteMovie(String id) async {
+
+  Future<int> deleteTravel(int id) async {
     var dbClient = await db;
     var res = await dbClient.delete("Travels", where: "id = ?", whereArgs: [id]);
     print("Travel deleted $res");
