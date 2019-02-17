@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 import 'package:luharitrip/resources/luxury_api.dart';
 import 'package:luharitrip/ui/travel_list.dart';
 
@@ -20,7 +21,6 @@ void main(LuxuryApi api) {
 
 class LuhariTripApp extends StatefulWidget{
   final LuxuryApi api;
-
   LuhariTripApp({Key key, this.api}) : super(key: key);
 
   @override
@@ -30,7 +30,6 @@ class LuhariTripApp extends StatefulWidget{
 class _RxDartLuhariTripApp extends State<LuhariTripApp>{
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
       theme: defaultTargetPlatform == TargetPlatform.iOS
           ? kIOSTheme

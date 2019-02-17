@@ -5,14 +5,13 @@ import 'package:rxdart/rxdart.dart';
 import '../models/item_model.dart';
 
 class TravelBloc {
-  final _repository = Repository();
   final _travelsFetcher = PublishSubject<ItemModel>();
   final List<int> favoriteIds = List();
 
   Observable<ItemModel> get allTravels => _travelsFetcher.stream;
 
   fetchAllTravels() async {
-    ItemModel itemModel = await _repository.fetchAllTravels();
+    ItemModel itemModel = await repository.fetchAllTravels();
     if (favoriteBloc.hasBdChanged) {
       await favoriteBloc.fetchAllTravels();
       favoriteBloc.itemModel.items.forEach((t) {
